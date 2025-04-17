@@ -1,0 +1,53 @@
+
+.body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #050A30;
+    color: white;
+    font-size: larger;
+}
+
+header{
+    width: 90%;
+    text-align: center;
+    padding: 1%;
+}
+
+
+.img-header{
+    width: 12%;
+}
+
+img{
+    width: 100%;
+}
+
+.div-conteudo{
+    display: none;
+}
+
+.div-buttons{
+    display: flex;
+    flex-direction: column;
+    height: 70vh;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.div-btn-enviar button, a, input, #btnImprimir, #home{
+    width: 50%;
+    height: 10%;
+    margin: 0 auto;
+    font-size: 2rem;
+}
+
+
+@media only screen and (max-width: 986px) {
+    .img-header{
+        width: 25%;
+    }
+
+  }
+

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+  <link rel="stylesheet" href="index.css">
+
+  <title>GS STORE</title>
+  
+</head>
+<body>
+
+
+
+    <header class="container">
+        <div class="img-header">
+            <img src="logo.jpeg" alt="logo Gs Store">
+        </div>
+        <button type="button" class="btn btn-primary" id="MostraVenda">Venda</button>
+        <button type="button" class="btn btn-primary" id="MostrarRecibo">Gerar Recibo</button>
+        <button type="button" class="btn btn-primary" id="MostraOS">Abrir OS</button>
+
+        <div class="Venda">
+            <h1>Realizar Venda</h1>
+        </div>
+        <div class="Recibo">
+            <h1>Gerar Recibo</h1>
+        </div>
+        <div class="OS">
+            <h1>Abrir OS</h1>
+        </div>
+        
+    </header>
+
+    <form action="processarVenda.php" method="POST" class="Venda">
+        <div class="container mt-7 DisplayFlex">
+            <div class="form-group col-md-4">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="cpf">CPF:</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" required>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="telefone">Tel/Celular:</label>
+                <input type="text" class="form-control" id="celular" name="celular" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            
+            <hr>
+
+            <div class="form-group col-md-2">
+                <label for="nome">CEP:</label>
+                <input type="text" class="form-control" id="cep3" name="cep" required>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="endereco">Endereço:</label>
+                <input type="text" class="form-control" id="endereco3" name="endereco" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="endereco">Numero:</label>
+                <input type="numer" class="form-control" id="numero" name="numero" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="bairro">Bairro:</label>
+                <input type="text" class="form-control" id="bairro3" name="bairro" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cidade">Cidade:</label>
+                <input type="text" class="form-control" id="cidade3" name="cidade" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="estado">Estado:</label>
+                <input type="text" class="form-control" id="estado3" name="estado" required>
+            </div>
+            
+        </div>
+
+        <div class="container mt-7">
+            <hr>
+            <div id="produtosContainer">
+                <div class="form-group">
+                    <label for="nome">Produto:</label>
+                    <input type="text" class="form-control" id="produto[]" name="produto[]" required>
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Qtde:</label>
+                    <input type="text" class="form-control" id="quantidade[]" name="quantidade[]" required>
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Valor:</label>
+                    <input type="numer" class="form-control" id="valor[]" name="valor[]" required>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-success" id="btnAdicionarProduto">Adicionar Produto</button>
+
+            <hr>
+
+            <div class="DisplayFlex CenterItens">
+                <div class="form-group">
+                    <label for="forma_pagamento">Forma de Pagamento:</label>
+                    <select class="form-select" aria-label="Default select example" name="pagamento">
+                        <option selected ="Dinheiro">Dinheiro</option>
+                        <option value="Pix">Pix</option>
+                        <option value="Crédito">Crédito</option>
+                        <option value="Débito">Débito</option>
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="nome">Valor Pago:</label>
+                    <input type="number" class="form-control" id="valor_pago" name="valor_pago" required>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+                <label for="nome">Observações:</label>
+                    <div  class="DisplayFlex CenterItens GroupCheckBox">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkboxIphone">
+                            <label class="form-check-label" for="checkboxIphone">Lacrado</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkboxIphonesemi">
+                            <label class="form-check-label" for="checkboxIphone">Semi-novo</label>
+                        </div>
+                    </div>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="obs"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary BtnGerarPdf">Gerar PDF</button>
+        </div>
+    </form>
+
+    <form action="processarRecibo.php" method="POST" class="Recibo">
+        <div class="container mt-7 DisplayFlex">
+            <div class="form-group col-md-4">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="cpf">CPF:</label>
+                <input type="text" class="form-control" id="cpf2" name="cpf" required>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="telefone">Tel/Celular:</label>
+                <input type="text" class="form-control" id="celular2" name="celular" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            
+            <hr>
+
+            <div class="form-group col-md-2">
+                <label for="nome">CEP:</label>
+                <input type="text" class="form-control" id="cep" name="cep" required>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="endereco">Endereço:</label>
+                <input type="text" class="form-control" id="endereco" name="endereco" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="endereco">Numero:</label>
+                <input type="numer" class="form-control" id="numero" name="numero" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="bairro">Bairro:</label>
+                <input type="text" class="form-control" id="bairro" name="bairro" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cidade">Cidade:</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="estado">Estado:</label>
+                <input type="text" class="form-control" id="estado" name="estado" required>
+            </div>
+            
+        </div>
+
+        <div class="container mt-7">
+            <hr>
+            <div id="produtosContainer">
+                <div class="form-group">
+                    <label for="nome">Produto:</label>
+                    <input type="text" class="form-control" id="produto[]" name="produto[]" required>
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Qtde:</label>
+                    <input type="text" class="form-control" id="quantidade[]" name="quantidade[]" required>
+                </div>
+                <div class="form-group">
+                    <label for="endereco">Valor:</label>
+                    <input type="numer" class="form-control" id="valor[]" name="valor[]" required>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-success" id="btnAdicionarProduto">Adicionar Produto</button>
+
+            <hr>
+
+            <div class="DisplayFlex CenterItens">
+                <div class="form-group">
+                    <label for="forma_pagamento">Forma de Pagamento:</label>
+                    <select class="form-select" aria-label="Default select example" name="pagamento">
+                        <option selected ="Dinheiro">Dinheiro</option>
+                        <option value="Pix">Pix</option>
+                        <option value="Crédito">Crédito</option>
+                        <option value="Débito">Débito</option>
+                    </select>
+                </div>
+        
+                <div class="form-group">
+                    <label for="nome">Valor Pago:</label>
+                    <input type="number" class="form-control" id="valor_pago" name="valor_pago" required>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+                <label for="nome">Observações:</label>
+                    <div  class="DisplayFlex CenterItens GroupCheckBox">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkboxIphone2">
+                            <label class="form-check-label" for="checkboxIphone">Lacrado</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="checkboxIphonesemi2">
+                            <label class="form-check-label" for="checkboxIphone">Semi-novo</label>
+                        </div>
+                    </div>
+                <textarea class="form-control" id="exampleFormControlTextarea2" rows="4" name="obs"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary BtnGerarPdf">Gerar PDF</button>
+        </div>
+    </form>
+
+    
+    <form action="processarOS.php" method="POST" class="OS">
+        <div class="container mt-7 DisplayFlex">
+            <div class="form-group col-md-4">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="cpf">CPF:</label>
+                <input type="text" class="form-control" id="cpf" name="cpf" required>
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="telefone">Tel/Celular:</label>
+                <input type="text" class="form-control" id="celular" name="celular" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            
+            <hr>
+
+            <div class="form-group col-md-2">
+                <label for="nome">CEP:</label>
+                <input type="text" class="form-control" id="cep2" name="cep" required>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="endereco">Endereço:</label>
+                <input type="text" class="form-control" id="endereco2" name="endereco" required>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="endereco">Numero:</label>
+                <input type="numer" class="form-control" id="numero" name="numero" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="bairro">Bairro:</label>
+                <input type="text" class="form-control" id="bairro2" name="bairro" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cidade">Cidade:</label>
+                <input type="text" class="form-control" id="cidade2" name="cidade" required>
+            </div>
+            <div class="form-group col-md-3">
+                <label for="estado">Estado:</label>
+                <input type="text" class="form-control" id="estado2" name="estado" required>
+            </div>
+            
+        </div>
+
+        <div class="container mt-7">
+            <hr>
+            <div class="GroupCheckBox">
+                <div class="form-group">
+                    <label for="produto">Modelo:</label>
+                    <input type="text" class="form-control" id="produto" name="produto" required>
+                </div>
+                <div class="form-check check-margin">
+                    <input class="form-check-input" type="checkbox" name="opcao[]" value="Tela c/ Touch">
+                    <label class="form-check-label" for="checkboxIphone">Tela c/ Touch</label>
+                </div>
+                <div class="form-check check-margin">
+                    <input class="form-check-input" type="checkbox" name="opcao[]" value="Tela s/ Touch">
+                    <label class="form-check-label" for="checkboxIphone">Tela s/ Touch</label>
+                </div>
+                <div class="form-check check-margin">
+                    <input class="form-check-input" type="checkbox"name="opcao[]" value="Tampa Traseira">
+                    <label class="form-check-label" for="checkboxIphone">Tampa Traseira</label>
+                </div>
+                <div class="form-check check-margin">
+                    <input class="form-check-input" type="checkbox"name="opcao[]" value="Tampa Traseira">
+                    <label class="form-check-label" for="checkboxIphone">Tampa Traseira</label>
+                </div>
+                <div class="form-check check-margin">
+                    <input class="form-check-input" type="checkbox" name="opcao[]" value="Botões">
+                    <label class="form-check-label" for="checkboxIphone">Botões</label>
+                </div>
+                <div class="form-check check-margin">
+                    <input class="form-check-input" type="checkbox" name="opcao[]" value="Bateria">
+                    <label class="form-check-label" for="checkboxIphone">Bateria</label>
+                </div>
+                <div class="form-check check-margin">
+                    <input class="form-check-input" type="checkbox"name="opcao[]"value="Alto falante">
+                    <label class="form-check-label" for="checkboxIphone">Alto falante</label>
+                </div>
+                <div class="form-check check-margin">
+                    <input class="form-check-input" type="checkbox"name="opcao[]"value="Conector">
+                    <label class="form-check-label" for="checkboxIphone">Conector</label>
+                </div>
+                <div class="form-check check-margin">
+                    <input class="form-check-input" type="checkbox" name="opcao[]" value="Placa">
+                    <label class="form-check-label" for="checkboxIphone">Placa</label>
+                </div>
+                <div class="form-check check-margin">
+                    <input class="form-check-input" type="checkbox" name="opcao[]" value="Aparelho Não liga">
+                    <label class="form-check-label" for="checkboxIphone">Aparelho Não Liga</label>
+                </div>
+                <div class="form-check check-margin">
+                    <input class="form-check-input" type="checkbox" name="opcao[]" value="Outros">
+                    <label class="form-check-label" for="checkboxIphone">Outros</label>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="DisplayFlex CenterItens">
+                <div class="form-group">
+                    <label for="forma_pagamento">Forma de Pagamento:</label>
+                    <select class="form-select" aria-label="Default select example" name="pagamento">
+                        <option selected ="Dinheiro">Dinheiro</option>
+                        <option value="Pix">Pix</option>
+                        <option value="Crédito">Crédito</option>
+                        <option value="Débito">Débito</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ValorOrcamento">Valor do Orçamento:</label>
+                    <input type="number" class="form-control" id="orcamento"  name="orcamento">
+                </div>
+        
+                <div class="form-group">
+                    <label for="ValorPago">Valor Pago:</label>
+                    <input type="number" class="form-control" id="valor_pago" name="valor_pago" required>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+                <label for="nome">Observações:</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="obs"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary BtnGerarPdf">Gerar PDF</button>
+        </div>
+    </form>
+
+
+
+    <script src="crud_produto.js"></script>
+    <script src="mask.js"></script>
+    <script src="https://unpkg.com/imask"></script>
+    <script src="obs_produto.js"></script>
+    <script>
+        $(document).ready(function() {
+          $('#MostraVenda').on('click', function() {
+            $('.Venda').show();
+            $('.OS').hide();
+            $('.Recibo').hide();
+          });
+      
+          $('#MostraOS').on('click', function() {
+            $('.Venda').hide();
+            $('.Recibo').hide();
+            $('.OS').show();
+          });
+
+          $('#MostrarRecibo').on('click', function() {
+            $('.Venda').hide();
+            $('.OS').hide();
+            $('.Recibo').show();
+          });
+        });
+      </script>
+
+      <script>
+                    $(document).ready(function() {
+                $('#cep').on('blur', function() {
+                    var cep = $(this).val();
+                    if (cep) {
+                        $.ajax({
+                            url: 'https://viacep.com.br/ws/' + cep + '/json/',
+                            type: 'GET',
+                            dataType: 'json',
+                            success: function(data) {
+                                $('#endereco').val(data.logradouro);
+                                $('#bairro').val(data.bairro);
+                                $('#estado').val(data.uf);
+                                $('#cidade').val(data.localidade);
+                            }
+                        });
+                    }
+                });
+            });
+
+                $(document).ready(function() {
+                    $('#cep2').on('blur', function() {
+                        var cep2 = $(this).val();
+                        if (cep2) {
+                            $.ajax({
+                                url: 'https://viacep.com.br/ws/' + cep2 + '/json/',
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function(data2) {
+                                    $('#endereco2').val(data2.logradouro);
+                                    $('#bairro2').val(data2.bairro);
+                                    $('#estado2').val(data2.uf);
+                                    $('#cidade2').val(data2.localidade);
+                                }
+                            });
+                        }
+                    });
+                });
+                
+
+                $(document).ready(function() {
+                    $('#cep3').on('blur', function() {
+                        var cep3 = $(this).val();
+                        if (cep3) {
+                            $.ajax({
+                                url: 'https://viacep.com.br/ws/' + cep3 + '/json/',
+                                type: 'GET',
+                                dataType: 'json',
+                                success: function(data3) {
+                                    $('#endereco3').val(data3.logradouro);
+                                    $('#bairro3').val(data3.bairro);
+                                    $('#estado3').val(data3.uf);
+                                    $('#cidade3').val(data3.localidade);
+                                }
+                            });
+                        }
+                    });
+                });
+      </script>
+
+</body>
+</html>
